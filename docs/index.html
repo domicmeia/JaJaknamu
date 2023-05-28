@@ -42,6 +42,14 @@
         // 지도를 생성합니다
         var map = new kakao.maps.Map(mapContainer, mapOption);
 
+        navigator.geolocation.getCurrentPosition(function(position){
+            var lat = position.coords.latitude, // 위도
+                lon = position.coords.longitude; // 경도
+
+            var locPosition = new kakao.maps.LatLng(lat, lon); // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다.
+             map.setCenter(locPosition);
+        });
+
         // 장소 검색 객체를 생성합니다
         var ps = new kakao.maps.services.Places();
 
@@ -246,6 +254,8 @@
                 el.removeChild(el.lastChild);
             }
         }
+
+
     </script>
 </body>
 </html>
